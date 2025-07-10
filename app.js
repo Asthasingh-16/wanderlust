@@ -78,8 +78,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 // });
 
 
-
-
 main()
   .then(() => {
     console.log("connection successful!");
@@ -106,6 +104,10 @@ app.use("/listings", listingRouter);
 
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/", userRouter);
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 try {
   app.all("*", (req, res, next) => {
